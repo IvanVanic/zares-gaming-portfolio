@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZARES GAMING — BREAK REALITY</title>
+  <meta name="description" content="Official portfolio of Zares Gaming. Streamer. Creator. Reality Breaker.">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Inline the favicon as a data URI: a small cyan Z on black -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230a0008' width='100' height='100'/><text y='.9em' font-size='90' fill='%2300ffff'>Z</text></svg>">
+</head>
+<body>
+
+  <!-- ============================================================
+       LOADING SCREEN
+       ============================================================ -->
+  <div id="loading-screen" role="status" aria-label="Loading ZARES Gaming">
+    <div class="loading-content">
+      <div class="loading-logo glitch" data-text="ZARES">ZARES</div>
+      <div class="loading-sub quantum-dissolve">INITIALIZING ZARES PROTOCOL...</div>
+      <div class="loading-bar-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="loading-percent">
+        <div class="loading-bar" id="loading-bar"></div>
+      </div>
+      <div class="loading-percent" id="loading-percent">0%</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo glitch" data-text="ZARES" aria-label="ZARES Gaming — Home">ZARES</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li role="listitem"><a href="#hero">HOME</a></li>
+        <li role="listitem"><a href="#about">ABOUT</a></li>
+        <li role="listitem"><a href="#platforms">STREAMS</a></li>
+        <li role="listitem"><a href="#content">CONTENT</a></li>
+        <li role="listitem"><a href="gaming-ideas.html" class="nav-ideas">BEST GAMING IDEAS</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+       ============================================================ -->
+  <section id="hero" aria-label="Hero — ZARES Gaming">
+    <div id="hero-shapes" aria-hidden="true">
+      <!-- Geometric floating shapes - JS adds parallax -->
+      <div class="shape shape-1" data-speed="0.03"></div>
+      <div class="shape shape-2" data-speed="0.05"></div>
+      <div class="shape shape-3" data-speed="0.07"></div>
+      <div class="shape shape-4" data-speed="0.04"></div>
+      <div class="shape shape-5" data-speed="0.06"></div>
+      <div class="shape shape-6" data-speed="0.02"></div>
+      <div class="shape shape-7" data-speed="0.08"></div>
+    </div>
+    <!-- Fake visualizer bars - JS inserts them -->
+    <div id="hero-visualizer" aria-hidden="true"></div>
+
+    <div class="container hero-content">
+      <div class="hero-eyebrow quantum-dissolve">OFFICIAL PORTFOLIO — EST. 2024</div>
+      <h1 class="hero-title">
+        <span class="title-line-1 glitch" data-text="ZARES">ZARES</span>
+        <span class="title-line-2 glitch" data-text="GAMING">GAMING</span>
+      </h1>
+      <p class="hero-tagline">BREAKING REALITY SINCE 2024</p>
+      <div class="hero-actions">
+        <a href="#platforms" class="btn-primary plasma-border">ENTER THE VOID</a>
+        <a href="gaming-ideas.html" class="btn-secondary">BEST GAMING IDEAS →</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>SCROLL</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT SECTION
+       ============================================================ -->
+  <section id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-sub quantum-dissolve">PLAYER PROFILE</p>
+        <h2 class="section-title quantum-dissolve" id="about-heading">ABOUT ZARES</h2>
+      </div>
+      <div class="grid-2 about-grid">
+
+        <!-- Left: Holographic ID Card -->
+        <div class="id-card-wrap">
+          <div class="id-card holo-card" role="img" aria-label="ZARES Player ID card — Legendary tier, Reality Architect">
+            <div class="id-card-header">
+              <span class="id-label">PLAYER ID</span>
+              <span class="id-class">LEGENDARY</span>
+            </div>
+            <div class="id-avatar" aria-hidden="true">
+              <!-- CSS-generated avatar placeholder -->
+              <div class="avatar-rings">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+                <div class="avatar-center">Z</div>
+              </div>
+            </div>
+            <div class="id-name">ZARES</div>
+            <div class="id-title">REALITY ARCHITECT</div>
+            <div class="id-stats" role="list" aria-label="Player statistics">
+              <div class="stat" role="listitem">
+                <div class="stat-number" data-target="1000" aria-label="1000 hours streamed">0</div>
+                <div class="stat-label">HRS STREAMED</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="stat-number" data-target="50000" aria-label="50000 community members">0</div>
+                <div class="stat-label">COMMUNITY</div>
+              </div>
+              <div class="stat" role="listitem">
+                <div class="stat-number" data-target="999" aria-label="999 games broken">0</div>
+                <div class="stat-label">GAMES BROKEN</div>
+              </div>
+            </div>
+            <div class="id-barcode" aria-hidden="true">
+              <!-- CSS barcode pattern -->
+              <div class="barcode-inner"></div>
+            </div>
+            <div class="id-footer">
+              <span>ZARES™ SYSTEM</span>
+              <span>2024–∞</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Text Content -->
+        <div class="about-text">
+          <h3 class="about-heading quantum-dissolve">The Void Caller</h3>
+          <p class="about-para">Zares Gaming isn't just a channel. It's a dimensional rift in the fabric of online entertainment. Where others play games, Zares <span class="text-cyan">breaks them</span>, <span class="text-magenta">bends them</span>, and sometimes <span class="text-purple">invents entirely new ones</span>.</p>
+          <p class="about-para">A gaming architect of the highest order. Known for discovering mechanics developers didn't know existed, speedrunning the unspeedrunnable, and streaming with an energy that defies physics.</p>
+          <p class="about-para">The <em>BEST GAMING IDEAS</em> page exists because Zares' concepts kept escaping his mind and needed to be trapped in interactive form before they colonized the metaverse.</p>
+          <div class="about-skills" role="list" aria-label="Skills">
+            <div class="skill-tag" role="listitem">SPEEDRUNNING</div>
+            <div class="skill-tag" role="listitem">GAME DESIGN</div>
+            <div class="skill-tag" role="listitem">LIVE CONTENT</div>
+            <div class="skill-tag" role="listitem">REALITY BENDING</div>
+            <div class="skill-tag" role="listitem">EXCLUSIVE CONTENT</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PLATFORMS SECTION
+       ============================================================ -->
+  <section id="platforms" aria-labelledby="platforms-heading">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-sub">FIND ME IN THE MATRIX</p>
+        <h2 class="section-title" id="platforms-heading">BROADCAST NODES</h2>
+      </div>
+      <div class="grid-3 platforms-grid">
+
+        <!-- YouTube Card -->
+        <a href="https://www.youtube.com/@zaresgaming" target="_blank" rel="noopener" class="platform-card platform-youtube holo-card plasma-border" aria-label="ZARES Gaming on YouTube — Subscribe for VODs and highlights">
+          <div class="platform-icon" aria-hidden="true">
+            <!-- CSS play button triangle -->
+            <div class="yt-icon">
+              <div class="yt-play"></div>
+            </div>
+          </div>
+          <div class="platform-name">YOUTUBE</div>
+          <div class="platform-handle">@ZARESGAMING</div>
+          <div class="platform-desc">Full VODs. Highlight reels. Reality-breaking moments captured forever.</div>
+          <div class="platform-cta">SUBSCRIBE →</div>
+        </a>
+
+        <!-- Twitch Card -->
+        <a href="https://www.twitch.tv/zaresgaming" target="_blank" rel="noopener" class="platform-card platform-twitch holo-card plasma-border" aria-label="ZARES Gaming on Twitch — Watch live streams">
+          <div class="platform-icon" aria-hidden="true">
+            <div class="twitch-icon">
+              <!-- CSS broadcast icon -->
+              <div class="broadcast-dot"></div>
+              <div class="broadcast-ring r1"></div>
+              <div class="broadcast-ring r2"></div>
+              <div class="broadcast-ring r3"></div>
+            </div>
+          </div>
+          <div class="platform-name">TWITCH</div>
+          <div class="platform-handle">ZARESGAMING</div>
+          <div class="platform-desc">Live streams. Raw gameplay. Chat with Zares in real-time. LIVE NOW.</div>
+          <div class="platform-cta">WATCH LIVE →</div>
+          <div class="live-badge" aria-label="Currently live">● LIVE</div>
+        </a>
+
+        <!-- OnlyFans Card -->
+        <a href="https://www.onlyfans.com/zaresgaming" target="_blank" rel="noopener" class="platform-card platform-onlyfans holo-card plasma-border" aria-label="ZARES Gaming on OnlyFans — Exclusive behind-the-scenes content">
+          <div class="platform-icon" aria-hidden="true">
+            <div class="of-icon">
+              <!-- CSS star/exclusive icon -->
+              <div class="star-shape"></div>
+            </div>
+          </div>
+          <div class="platform-name">ONLYFANS</div>
+          <div class="platform-handle">ZARESGAMING</div>
+          <div class="platform-desc">Exclusive behind-the-scenes. Unseen content. For the real fans only.</div>
+          <div class="platform-cta">GO EXCLUSIVE →</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTENT SHOWCASE SECTION
+       ============================================================ -->
+  <section id="content" aria-labelledby="content-heading">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-sub">LATEST TRANSMISSIONS</p>
+        <h2 class="section-title" id="content-heading">CONTENT FEED</h2>
+      </div>
+    </div>
+    <div class="content-scroll-container" role="region" aria-label="Content feed — scroll horizontally to view all">
+      <div class="content-track">
+
+        <article class="content-card" style="--card-hue: 180deg;">
+          <div class="card-overlay" aria-hidden="true"></div>
+          <div class="card-info">
+            <div class="card-views">2.3M VIEWS</div>
+            <div class="card-title">I BROKE THE GAME'S PHYSICS ENGINE LIVE</div>
+            <div class="card-tag">STREAM HIGHLIGHT</div>
+          </div>
+        </article>
+
+        <article class="content-card" style="--card-hue: 300deg;">
+          <div class="card-overlay" aria-hidden="true"></div>
+          <div class="card-info">
+            <div class="card-views">1.8M VIEWS</div>
+            <div class="card-title">SPEEDRUNNING A GAME BACKWARDS IN 4D</div>
+            <div class="card-tag">SPEEDRUN</div>
+          </div>
+        </article>
+
+        <article class="content-card" style="--card-hue: 270deg;">
+          <div class="card-overlay" aria-hidden="true"></div>
+          <div class="card-info">
+            <div class="card-views">3.1M VIEWS</div>
+            <div class="card-title">24 HOUR REALITY BREAK STREAM EVENT</div>
+            <div class="card-tag">MARATHON</div>
+          </div>
+        </article>
+
+        <article class="content-card" style="--card-hue: 200deg;">
+          <div class="card-overlay" aria-hidden="true"></div>
+          <div class="card-info">
+            <div class="card-views">900K VIEWS</div>
+            <div class="card-title">INVENTING A GAME GENRE IN 60 SECONDS</div>
+            <div class="card-tag">ORIGINAL</div>
+          </div>
+        </article>
+
+        <article class="content-card" style="--card-hue: 320deg;">
+          <div class="card-overlay" aria-hidden="true"></div>
+          <div class="card-info">
+            <div class="card-views">4.7M VIEWS</div>
+            <div class="card-title">THE IMPOSSIBLE ACHIEVEMENT NOBODY GOT</div>
+            <div class="card-tag">VIRAL</div>
+          </div>
+        </article>
+
+        <article class="content-card" style="--card-hue: 160deg;">
+          <div class="card-overlay" aria-hidden="true"></div>
+          <div class="card-info">
+            <div class="card-views">1.2M VIEWS</div>
+            <div class="card-title">PLAYING IN VOID MODE ONLY ZARES FOUND</div>
+            <div class="card-tag">EXCLUSIVE</div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BEST GAMING IDEAS TEASER
+       ============================================================ -->
+  <section id="ideas-teaser" aria-labelledby="ideas-heading">
+    <div class="ideas-bg" aria-hidden="true"></div>
+    <div class="container ideas-teaser-content">
+      <div class="portal-wrap" aria-hidden="true">
+        <div class="void-portal portal-outer"></div>
+        <div class="void-portal portal-mid"></div>
+        <div class="void-portal portal-inner"></div>
+        <div class="portal-text">∞</div>
+      </div>
+      <h2 class="ideas-title glitch" data-text="BEST GAMING IDEAS" id="ideas-heading">BEST GAMING IDEAS</h2>
+      <p class="ideas-sub">5 surreal gaming concepts made <span class="text-cyan">real</span>. 5 playable experiments from the mind of Zares™. Reality may not survive.</p>
+      <div class="ideas-games-preview" role="list" aria-label="Available games">
+        <span class="preview-tag" role="listitem">ZARES™ VOIDRUNNER</span>
+        <span class="preview-tag" role="listitem">ZARES™ NEURALSTRIKE</span>
+        <span class="preview-tag" role="listitem">ZARES™ GRAVITON BREACH</span>
+        <span class="preview-tag" role="listitem">ZARES™ PIXELDRIFT</span>
+        <span class="preview-tag" role="listitem">ZARES™ MEMORYGLITCH</span>
+      </div>
+      <a href="gaming-ideas.html" class="btn-portal plasma-border" aria-label="Enter the Gaming Ideas page — 5 playable game demos">
+        <span class="portal-btn-text">ENTER THE IDEAS VOID</span>
+        <span class="portal-btn-arrow">⟶</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer id="footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-logo glitch" data-text="ZARES">ZARES GAMING</div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="https://www.youtube.com/@zaresgaming" target="_blank" rel="noopener" aria-label="ZARES Gaming on YouTube (opens in new tab)">YOUTUBE</a>
+        <a href="https://www.twitch.tv/zaresgaming" target="_blank" rel="noopener" aria-label="ZARES Gaming on Twitch (opens in new tab)">TWITCH</a>
+        <a href="https://www.onlyfans.com/zaresgaming" target="_blank" rel="noopener" aria-label="ZARES Gaming on OnlyFans (opens in new tab)">ONLYFANS</a>
+        <a href="gaming-ideas.html">BEST GAMING IDEAS</a>
+      </nav>
+      <p class="footer-copy">© 2030 ZARES GAMING™ — ALL REALITIES RESERVED. VOID ARCHITECTS COALITION.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

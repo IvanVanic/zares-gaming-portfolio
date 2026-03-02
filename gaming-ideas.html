@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BEST GAMING IDEAS — ZARES GAMING</title>
+  <meta name="description" content="5 surreal, playable gaming concepts from the mind of Zares. Reality may not survive.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230a0008' width='100' height='100'/><text y='.9em' font-size='90' fill='%2300ffff'>Z</text></svg>">
+
+  <style>
+    /* ============================================================
+       IDEAS PAGE — SCOPED STYLES
+       These styles only apply to gaming-ideas.html.
+       All shared design tokens are inherited from styles.css.
+       ============================================================ */
+
+    /* ── Page base ─────────────────────────────────────────────── */
+    body.ideas-page {
+      background: #0a0008;
+      color: #f0f0ff;
+      font-family: 'Courier New', 'Lucida Console', monospace;
+      overflow-x: hidden;
+    }
+
+    /* ── Loading Screen ────────────────────────────────────────── */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99998;
+      background: #0a0008;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loading-screen.loaded {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loading-content {
+      text-align: center;
+      position: relative;
+    }
+    .loading-logo {
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: #00ffff;
+      text-shadow: 0 0 30px #00ffff, 0 0 60px rgba(0,255,255,0.4);
+      margin-bottom: 1rem;
+    }
+    .loading-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      color: rgba(0,255,255,0.7);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+    .loading-bar-wrap {
+      width: 320px;
+      height: 3px;
+      background: rgba(0,255,255,0.15);
+      border: 1px solid rgba(0,255,255,0.3);
+      overflow: hidden;
+      margin: 0 auto 1rem;
+    }
+    .loading-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00ffff, #ff00cc);
+      box-shadow: 0 0 12px #00ffff;
+      transition: width 0.05s linear;
+    }
+    .loading-percent {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: rgba(0,255,255,0.5);
+    }
+
+    /* ── Navigation ────────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.2rem 0;
+      transition: background 0.3s ease, padding 0.3s ease, backdrop-filter 0.3s ease;
+    }
+    #nav.scrolled {
+      background: rgba(10,0,8,0.92);
+      backdrop-filter: blur(12px);
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(0,255,255,0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .nav-logo {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: #00ffff;
+      text-decoration: none;
+      text-shadow: 0 0 14px rgba(0,255,255,0.6);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #00ffff;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    #nav.menu-open .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #nav.menu-open .hamburger span:nth-child(2) { opacity: 0; }
+    #nav.menu-open .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: rgba(240,240,255,0.65);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+    .nav-links a:hover,
+    .nav-links a.nav-active {
+      color: #00ffff;
+      text-shadow: 0 0 10px rgba(0,255,255,0.6);
+    }
+    .nav-links a.nav-ideas {
+      color: #ff00cc;
+      text-shadow: 0 0 8px rgba(255,0,204,0.4);
+    }
+    .nav-links a.nav-active {
+      border-bottom: 1px solid #00ffff;
+      padding-bottom: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(10,0,8,0.97);
+        border-bottom: 1px solid rgba(0,255,255,0.12);
+        padding: 1.5rem 2rem;
+        gap: 1.2rem;
+        align-items: flex-start;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      #nav.menu-open .nav-links {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Shared text utilities ─────────────────────────────────── */
+    .text-cyan    { color: #00ffff; }
+    .text-magenta { color: #ff00cc; }
+    .text-purple  { color: #9900ff; }
+    .text-orange  { color: #ff4400; }
+
+    /* ── Glitch element ────────────────────────────────────────── */
+    .glitch {
+      position: relative;
+    }
+
+    /* ── Plasma border ─────────────────────────────────────────── */
+    .plasma-border {
+      position: relative;
+    }
+    .plasma-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(90deg, #00ffff, #9900ff, #ff00cc, #00ffff);
+      background-size: 300% 100%;
+      animation: plasmaBorderAnim 3s linear infinite;
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes plasmaBorderAnim {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    /* ── Quantum dissolve ──────────────────────────────────────── */
+    .quantum-dissolve {
+      opacity: 0;
+      filter: blur(4px);
+      transform: translateY(12px);
+      transition: opacity 0.7s ease, filter 0.7s ease, transform 0.7s ease;
+    }
+    .quantum-dissolve.is-visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       IDEAS HERO SECTION
+       ============================================================ */
+    #ideas-hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .ideas-hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Geometric floating shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.06;
+      will-change: transform;
+    }
+    .shape-1 {
+      width: 600px; height: 600px;
+      top: -150px; right: -150px;
+      background: radial-gradient(circle, #00ffff 0%, transparent 70%);
+    }
+    .shape-2 {
+      width: 400px; height: 400px;
+      bottom: -100px; left: -100px;
+      background: radial-gradient(circle, #ff00cc 0%, transparent 70%);
+    }
+    .shape-3 {
+      width: 300px; height: 300px;
+      top: 30%; left: 20%;
+      background: radial-gradient(circle, #9900ff 0%, transparent 70%);
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    .shape-4 {
+      width: 200px; height: 200px;
+      top: 10%; left: 60%;
+      background: radial-gradient(circle, #ff4400 0%, transparent 70%);
+      border-radius: 0;
+      transform: rotate(45deg);
+      opacity: 0.04;
+    }
+    .shape-5 {
+      width: 500px; height: 500px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, #00ffff 0%, transparent 60%);
+      opacity: 0.02;
+    }
+    .shape-6 {
+      width: 150px; height: 150px;
+      top: 75%; right: 10%;
+      background: radial-gradient(circle, #ff00cc 0%, transparent 70%);
+      border-radius: 20% 80% 60% 40% / 40% 60% 40% 60%;
+    }
+    .shape-7 {
+      width: 250px; height: 250px;
+      top: 20%; right: 25%;
+      background: linear-gradient(135deg, #9900ff, #00ffff);
+      border-radius: 0;
+      clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+      opacity: 0.04;
+    }
+
+    /* Scanline overlay */
+    .ideas-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,255,255,0.012) 2px,
+        rgba(0,255,255,0.012) 4px
+      );
+      pointer-events: none;
+    }
+
+    .ideas-hero-content {
+      position: relative;
+      z-index: 2;
+      padding-top: 4rem;
+      padding-bottom: 6rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      color: rgba(0,255,255,0.6);
+      text-decoration: none;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+    .back-link:hover {
+      color: #00ffff;
+      text-shadow: 0 0 10px rgba(0,255,255,0.5);
+    }
+
+    .section-sub {
+      font-size: 0.7rem;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: #ff00cc;
+      margin-bottom: 1rem;
+    }
+
+    .ideas-main-title {
+      font-size: clamp(2.5rem, 8vw, 7rem);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      line-height: 0.9;
+      text-transform: uppercase;
+      color: #f0f0ff;
+      margin: 0 0 1.5rem;
+      text-shadow:
+        0 0 40px rgba(0,255,255,0.25),
+        0 0 80px rgba(153,0,255,0.15);
+    }
+
+    .ideas-hero-sub {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      line-height: 1.7;
+      color: rgba(240,240,255,0.65);
+      max-width: 580px;
+      margin-bottom: 3rem;
+    }
+
+    .ideas-quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .quick-nav-btn {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(0,255,255,0.75);
+      text-decoration: none;
+      border: 1px solid rgba(0,255,255,0.2);
+      background: rgba(0,255,255,0.04);
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .quick-nav-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,255,255,0.08);
+      transform: translateX(-100%);
+      transition: transform 0.2s ease;
+    }
+    .quick-nav-btn:hover {
+      color: #00ffff;
+      border-color: rgba(0,255,255,0.6);
+      text-shadow: 0 0 8px rgba(0,255,255,0.5);
+      box-shadow: 0 0 12px rgba(0,255,255,0.15);
+    }
+    .quick-nav-btn:hover::before {
+      transform: translateX(0);
+    }
+
+    /* Hero accent line */
+    #ideas-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #00ffff, #9900ff, #ff00cc, transparent);
+      opacity: 0.4;
+    }
+
+    /* ============================================================
+       GAME SECTIONS
+       ============================================================ */
+    .game-section {
+      position: relative;
+      padding: 8rem 0;
+      overflow: hidden;
+    }
+
+    .game-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,255,255,0.15), transparent);
+    }
+
+    /* Alternate section background */
+    .section-alt {
+      background: rgba(8,0,16,0.6);
+    }
+    .section-alt::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(153,0,255,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Big background number */
+    .game-number {
+      position: absolute;
+      top: 4rem;
+      right: 3rem;
+      font-size: clamp(5rem, 14vw, 12rem);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0,255,255,0.06);
+      user-select: none;
+      pointer-events: none;
+      line-height: 1;
+      z-index: 0;
+    }
+
+    .section-alt .game-number {
+      -webkit-text-stroke: 1px rgba(153,0,255,0.06);
+    }
+
+    /* Game layout grid */
+    .game-layout {
+      display: grid;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .game-layout-left  { grid-template-columns: 1fr 1fr; }
+    .game-layout-right { grid-template-columns: 1fr 1fr; }
+
+    @media (max-width: 900px) {
+      .game-layout-left,
+      .game-layout-right {
+        grid-template-columns: 1fr;
+      }
+      /* On mobile, canvas side always comes first */
+      .game-layout-right .game-info-side {
+        order: 2;
+      }
+      .game-layout-right .game-canvas-side {
+        order: 1;
+      }
+    }
+
+    /* ── Canvas wrapper ─────────────────────────────────────────── */
+    .game-canvas-wrapper {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #050005;
+      line-height: 0;
+    }
+    .game-canvas-wrapper canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    .dom-game-wrapper {
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dom-game-wrapper > div {
+      width: 100%;
+      min-height: 400px;
+    }
+
+    /* ── Game controls ──────────────────────────────────────────── */
+    .game-controls {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .game-btn {
+      padding: 0.5rem 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid currentColor;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-play {
+      color: #00ffff;
+      border-color: rgba(0,255,255,0.5);
+    }
+    .btn-play:hover {
+      background: rgba(0,255,255,0.1);
+      box-shadow: 0 0 16px rgba(0,255,255,0.3);
+    }
+    .btn-stop {
+      color: #ff00cc;
+      border-color: rgba(255,0,204,0.4);
+    }
+    .btn-stop:hover {
+      background: rgba(255,0,204,0.1);
+      box-shadow: 0 0 16px rgba(255,0,204,0.3);
+    }
+
+    /* ── Key badges ─────────────────────────────────────────────── */
+    .game-keys {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: rgba(240,240,255,0.45);
+      margin-top: 0.5rem;
+    }
+    .key-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border: 1px solid rgba(240,240,255,0.25);
+      border-radius: 3px;
+      font-size: 0.65rem;
+      margin: 0 1px;
+      color: rgba(240,240,255,0.6);
+      background: rgba(240,240,255,0.04);
+    }
+
+    /* ── Gravity direction buttons (Graviton) ───────────────────── */
+    .graviton-directions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .dir-btn {
+      padding: 0.4rem 0.9rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(153,0,255,0.4);
+      background: rgba(153,0,255,0.06);
+      color: rgba(153,0,255,0.9);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .dir-btn:hover {
+      background: rgba(153,0,255,0.15);
+      box-shadow: 0 0 12px rgba(153,0,255,0.3);
+      color: #cc44ff;
+    }
+    .chaos-btn {
+      border-color: rgba(255,68,0,0.5);
+      color: #ff4400;
+      background: rgba(255,68,0,0.06);
+    }
+    .chaos-btn:hover {
+      background: rgba(255,68,0,0.15);
+      box-shadow: 0 0 16px rgba(255,68,0,0.4);
+    }
+
+    /* ── Game info side ─────────────────────────────────────────── */
+    .game-info-side {
+      padding: 1rem 0;
+    }
+
+    /* Game badges */
+    .game-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .game-badge {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+    }
+    .badge-genre {
+      background: rgba(0,255,255,0.1);
+      border: 1px solid rgba(0,255,255,0.3);
+      color: #00ffff;
+    }
+    .badge-diff {
+      background: rgba(255,0,204,0.08);
+      border: 1px solid rgba(255,0,204,0.25);
+      color: #ff00cc;
+    }
+    .badge-zares {
+      background: rgba(153,0,255,0.08);
+      border: 1px solid rgba(153,0,255,0.3);
+      color: #9900ff;
+    }
+
+    /* Game title */
+    .game-title {
+      font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #f0f0ff;
+      margin: 0 0 0.3rem;
+      line-height: 1.1;
+      text-shadow: 0 0 20px rgba(0,255,255,0.15);
+    }
+
+    .game-subtitle {
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin: 0 0 1.5rem;
+      font-weight: 400;
+    }
+
+    .game-description {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(240,240,255,0.65);
+      margin-bottom: 1rem;
+    }
+    .game-description em {
+      color: rgba(240,240,255,0.45);
+      font-style: italic;
+    }
+
+    /* ── Lore box ────────────────────────────────────────────────── */
+    .game-lore {
+      border-left: 2px solid rgba(0,255,255,0.2);
+      padding: 0.8rem 1.2rem;
+      margin: 1.5rem 0;
+      background: rgba(0,255,255,0.03);
+    }
+    .lore-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #ff00cc;
+      margin-bottom: 0.5rem;
+    }
+    .lore-text {
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: rgba(240,240,255,0.5);
+      font-style: italic;
+    }
+
+    /* ── Game specs ──────────────────────────────────────────────── */
+    .game-specs {
+      margin-top: 1.5rem;
+      border-top: 1px solid rgba(0,255,255,0.08);
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .spec {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .spec-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(240,240,255,0.3);
+      white-space: nowrap;
+    }
+    .spec-val {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(0,255,255,0.7);
+      text-align: right;
+    }
+
+    /* ── Individual section accent colours ──────────────────────── */
+    #section-voidrunner .game-lore  { border-left-color: rgba(0,255,255,0.35); }
+    #section-neuralstrike .game-lore { border-left-color: rgba(255,0,204,0.35); }
+    #section-graviton .game-lore    { border-left-color: rgba(153,0,255,0.35); }
+    #section-pixeldrift .game-lore  { border-left-color: rgba(255,68,0,0.35); }
+    #section-memoryglitch .game-lore { border-left-color: rgba(0,255,255,0.35); }
+
+    #section-neuralstrike .game-specs  { border-top-color: rgba(255,0,204,0.1); }
+    #section-graviton .game-specs      { border-top-color: rgba(153,0,255,0.1); }
+    #section-pixeldrift .game-specs    { border-top-color: rgba(255,68,0,0.1); }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    #footer {
+      padding: 3rem 0;
+      border-top: 1px solid rgba(0,255,255,0.08);
+      background: rgba(8,0,16,0.8);
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 0.3em;
+      color: #00ffff;
+      text-shadow: 0 0 12px rgba(0,255,255,0.4);
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .footer-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(240,240,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+    .footer-links a:hover {
+      color: #00ffff;
+      text-shadow: 0 0 8px rgba(0,255,255,0.4);
+    }
+    .footer-copy {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(240,240,255,0.2);
+      margin: 0;
+    }
+
+    /* ============================================================
+       SECTION DIVIDERS — decorative glitch lines between sections
+       ============================================================ */
+    .game-section + .game-section::before {
+      background: linear-gradient(90deg, transparent, rgba(153,0,255,0.2), rgba(0,255,255,0.2), transparent);
+    }
+
+    /* ============================================================
+       RESPONSIVE ADJUSTMENTS
+       ============================================================ */
+    @media (max-width: 900px) {
+      .game-section { padding: 5rem 0; }
+      .game-number { font-size: 5rem; top: 2rem; right: 1rem; }
+      .game-layout { gap: 2.5rem; }
+    }
+    @media (max-width: 600px) {
+      .ideas-quick-nav { gap: 0.5rem; }
+      .quick-nav-btn { font-size: 0.6rem; padding: 0.4rem 0.8rem; }
+      .game-badges { gap: 0.4rem; }
+      .graviton-directions { gap: 0.4rem; }
+      .dir-btn { padding: 0.35rem 0.7rem; font-size: 0.6rem; }
+    }
+  </style>
+</head>
+<body class="ideas-page">
+
+  <!-- ============================================================
+       LOADING SCREEN
+       ============================================================ -->
+  <div id="loading-screen" role="status" aria-label="Loading ZARES Gaming Ideas">
+    <div class="loading-content">
+      <div class="loading-logo glitch" data-text="ZARES">ZARES</div>
+      <div class="loading-sub quantum-dissolve">LOADING GAMING LABORATORY...</div>
+      <div class="loading-bar-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-labelledby="loading-percent">
+        <div class="loading-bar" id="loading-bar"></div>
+      </div>
+      <div class="loading-percent" id="loading-percent">0%</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo glitch" data-text="ZARES" aria-label="ZARES Gaming — Home">ZARES</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li role="listitem"><a href="index.html">HOME</a></li>
+        <li role="listitem"><a href="index.html#about">ABOUT</a></li>
+        <li role="listitem"><a href="index.html#platforms">STREAMS</a></li>
+        <li role="listitem"><a href="index.html#content">CONTENT</a></li>
+        <li role="listitem"><a href="gaming-ideas.html" class="nav-ideas nav-active" aria-current="page">BEST GAMING IDEAS</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO SECTION
+       ============================================================ -->
+  <section id="ideas-hero" aria-label="Best Gaming Ideas — ZARES Gaming">
+    <div class="ideas-hero-bg" aria-hidden="true">
+      <div class="shape shape-1" data-speed="0.02"></div>
+      <div class="shape shape-2" data-speed="0.04"></div>
+      <div class="shape shape-3" data-speed="0.06"></div>
+      <div class="shape shape-4" data-speed="0.03"></div>
+      <div class="shape shape-5" data-speed="0.01"></div>
+      <div class="shape shape-6" data-speed="0.05"></div>
+      <div class="shape shape-7" data-speed="0.08"></div>
+    </div>
+
+    <div class="container ideas-hero-content">
+      <a href="index.html" class="back-link" aria-label="Return to main portfolio">← RETURN TO BASE</a>
+      <p class="section-sub quantum-dissolve">ZARES™ INTERACTIVE LABORATORY</p>
+      <h1 class="ideas-main-title glitch" data-text="BEST GAMING IDEAS">BEST GAMING IDEAS</h1>
+      <p class="ideas-hero-sub">
+        Five experiments from the mind of Zares. Five games that
+        <span class="text-cyan">shouldn't exist</span> but do.
+        Fully playable. Reality not guaranteed.
+      </p>
+      <nav class="ideas-quick-nav" aria-label="Jump to game section">
+        <a href="#section-voidrunner"   class="quick-nav-btn">01 VOIDRUNNER</a>
+        <a href="#section-neuralstrike" class="quick-nav-btn">02 NEURALSTRIKE</a>
+        <a href="#section-graviton"     class="quick-nav-btn">03 GRAVITON</a>
+        <a href="#section-pixeldrift"   class="quick-nav-btn">04 PIXELDRIFT</a>
+        <a href="#section-memoryglitch" class="quick-nav-btn">05 MEMORYGLITCH</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GAME 01 — ZARES™ VOIDRUNNER: CHROMATIC RIFT
+       Layout: canvas left, info right
+       ============================================================ -->
+  <section class="game-section" id="section-voidrunner" aria-labelledby="title-voidrunner">
+    <div class="game-number" aria-hidden="true">01</div>
+    <div class="container game-layout game-layout-left">
+
+      <div class="game-canvas-side">
+        <div class="game-canvas-wrapper plasma-border" role="img" aria-label="ZARES Voidrunner game canvas">
+          <canvas id="canvas-voidrunner" width="600" height="400" aria-label="Voidrunner game — press PLAY to start"></canvas>
+        </div>
+        <div class="game-controls" id="controls-voidrunner" role="group" aria-label="Voidrunner game controls">
+          <button class="game-btn btn-play" onclick="startVoidrunner()" aria-label="Start Voidrunner">▶ PLAY</button>
+          <button class="game-btn btn-stop" onclick="stopVoidrunner()" aria-label="Stop Voidrunner">■ STOP</button>
+        </div>
+        <div class="game-keys" aria-label="Keyboard controls">
+          <span class="key-badge" aria-label="A key">A</span>
+          <span class="key-badge" aria-label="D key">D</span>
+          or
+          <span class="key-badge" aria-label="Left arrow">←</span>
+          <span class="key-badge" aria-label="Right arrow">→</span>
+          to dodge
+        </div>
+      </div>
+
+      <div class="game-info-side">
+        <div class="game-badges" aria-label="Game tags">
+          <span class="game-badge badge-genre">ENDLESS RUNNER</span>
+          <span class="game-badge badge-diff">DIFFICULTY: VOID</span>
+          <span class="game-badge badge-zares">ZARES™ ORIGINAL</span>
+        </div>
+        <h2 class="game-title glitch" data-text="ZARES™ VOIDRUNNER" id="title-voidrunner">ZARES™ VOIDRUNNER</h2>
+        <h3 class="game-subtitle text-cyan">CHROMATIC RIFT</h3>
+        <p class="game-description">
+          You are a data packet. The void is collapsing. RGB channels are separating from reality.
+          Dodge the incoming chromatic shards before the rift swallows you whole.
+        </p>
+        <p class="game-description">
+          Inspired by the question: <em>"What if a game existed entirely inside a corrupted graphics driver?"</em>
+        </p>
+        <div class="game-lore">
+          <div class="lore-label">LORE FRAGMENT #001</div>
+          <div class="lore-text">
+            "The Chromatic Rift was discovered accidentally when Zares played a corrupted ROM.
+            The game inside it played itself. This is the recreation."
+          </div>
+        </div>
+        <div class="game-specs" aria-label="Game specifications">
+          <div class="spec">
+            <span class="spec-label">ENGINE</span>
+            <span class="spec-val">ZARES™ VOID-ENGINE v2.7</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">INPUT</span>
+            <span class="spec-val">KEYBOARD / TOUCH</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">HIGH SCORE</span>
+            <span class="spec-val" id="hs-voidrunner" aria-live="polite">--</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GAME 02 — ZARES™ NEURALSTRIKE: SYNAPTIC OVERLOAD
+       Layout: info left, canvas right
+       ============================================================ -->
+  <section class="game-section section-alt" id="section-neuralstrike" aria-labelledby="title-neuralstrike">
+    <div class="game-number" aria-hidden="true">02</div>
+    <div class="container game-layout game-layout-right">
+
+      <div class="game-info-side">
+        <div class="game-badges" aria-label="Game tags">
+          <span class="game-badge badge-genre">REFLEX CLICKER</span>
+          <span class="game-badge badge-diff">DIFFICULTY: SYNAPTIC</span>
+          <span class="game-badge badge-zares">ZARES™ ORIGINAL</span>
+        </div>
+        <h2 class="game-title glitch" data-text="ZARES™ NEURALSTRIKE" id="title-neuralstrike">ZARES™ NEURALSTRIKE</h2>
+        <h3 class="game-subtitle text-magenta">SYNAPTIC OVERLOAD</h3>
+        <p class="game-description">
+          Neural nodes are overloading. Strike the cyan and magenta synapses before they burst.
+          Avoid the red interference signals or lose precious mental bandwidth.
+        </p>
+        <p class="game-description">
+          Inspired by the question: <em>"What if clicking fast enough could literally rewire a brain?"</em>
+        </p>
+        <div class="game-lore">
+          <div class="lore-label">LORE FRAGMENT #002</div>
+          <div class="lore-text">
+            "After 12 hours of gaming, Zares swore he could see the neurons firing in his own peripheral vision.
+            This game is those neurons."
+          </div>
+        </div>
+        <div class="game-specs" aria-label="Game specifications">
+          <div class="spec">
+            <span class="spec-label">ENGINE</span>
+            <span class="spec-val">ZARES™ NEURAL-ENGINE v1.0</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">INPUT</span>
+            <span class="spec-val">MOUSE / TOUCH</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">HIGH SCORE</span>
+            <span class="spec-val" id="hs-neuralstrike" aria-live="polite">--</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-canvas-side">
+        <div class="game-canvas-wrapper plasma-border dom-game-wrapper" role="region" aria-label="Neuralstrike game container">
+          <div id="game-neuralstrike" aria-label="Neuralstrike game — press PLAY to start"></div>
+        </div>
+        <div class="game-controls" role="group" aria-label="Neuralstrike game controls">
+          <button class="game-btn btn-play" onclick="startNeuralstrike()" aria-label="Start Neuralstrike">▶ PLAY</button>
+          <button class="game-btn btn-stop" onclick="stopNeuralstrike()" aria-label="Stop Neuralstrike">■ STOP</button>
+        </div>
+        <div class="game-keys">Click the glowing nodes before they collapse</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GAME 03 — ZARES™ GRAVITON BREACH: NULL PHYSICS
+       Layout: canvas left, info right
+       ============================================================ -->
+  <section class="game-section" id="section-graviton" aria-labelledby="title-graviton">
+    <div class="game-number" aria-hidden="true">03</div>
+    <div class="container game-layout game-layout-left">
+
+      <div class="game-canvas-side">
+        <div class="game-canvas-wrapper plasma-border" role="img" aria-label="Graviton Breach game canvas">
+          <canvas id="canvas-graviton" width="600" height="400" aria-label="Graviton Breach game — press PLAY to start"></canvas>
+        </div>
+        <div class="game-controls" id="controls-graviton" role="group" aria-label="Graviton Breach game controls">
+          <button class="game-btn btn-play" onclick="startGraviton()" aria-label="Start Graviton Breach">▶ PLAY</button>
+          <button class="game-btn btn-stop" onclick="stopGraviton()" aria-label="Stop Graviton Breach">■ STOP</button>
+        </div>
+        <div class="graviton-directions" id="graviton-dirs" role="group" aria-label="Gravity direction controls">
+          <button class="dir-btn" onclick="setGravity('up')"    aria-label="Set gravity up">▲ UP</button>
+          <button class="dir-btn" onclick="setGravity('left')"  aria-label="Set gravity left">◀ LEFT</button>
+          <button class="dir-btn" onclick="setGravity('none')"  aria-label="Disable gravity">● ZERO-G</button>
+          <button class="dir-btn" onclick="setGravity('right')" aria-label="Set gravity right">RIGHT ▶</button>
+          <button class="dir-btn" onclick="setGravity('down')"  aria-label="Set gravity down">▼ DOWN</button>
+          <button class="dir-btn chaos-btn" onclick="setGravity('chaos')" aria-label="Enable chaos gravity">⚡ CHAOS</button>
+        </div>
+      </div>
+
+      <div class="game-info-side">
+        <div class="game-badges" aria-label="Game tags">
+          <span class="game-badge badge-genre">PHYSICS SANDBOX</span>
+          <span class="game-badge badge-diff">DIFFICULTY: NULL</span>
+          <span class="game-badge badge-zares">ZARES™ ORIGINAL</span>
+        </div>
+        <h2 class="game-title glitch" data-text="ZARES™ GRAVITON BREACH" id="title-graviton">ZARES™ GRAVITON BREACH</h2>
+        <h3 class="game-subtitle text-purple">NULL PHYSICS</h3>
+        <p class="game-description">
+          Gravity is not a law. It's a suggestion. Redirect it. Invert it. Abolish it entirely.
+          Survive long enough to question whether down was ever real.
+        </p>
+        <p class="game-description">
+          Inspired by the question: <em>"What if you could choose which direction was down?"</em>
+        </p>
+        <div class="game-lore">
+          <div class="lore-label">LORE FRAGMENT #003</div>
+          <div class="lore-text">
+            "During a 4AM session, Zares hypothesized that all platformers are wrong about gravity.
+            He spent 6 months proving it. Here is the proof."
+          </div>
+        </div>
+        <div class="game-specs" aria-label="Game specifications">
+          <div class="spec">
+            <span class="spec-label">ENGINE</span>
+            <span class="spec-val">ZARES™ PHYSICS-ENGINE v0.∞</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">INPUT</span>
+            <span class="spec-val">BUTTONS / KEYBOARD</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">SURVIVAL</span>
+            <span class="spec-val" id="hs-graviton" aria-live="polite">--</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GAME 04 — ZARES™ PIXELDRIFT: REALITY BREAKOUT
+       Layout: info left, canvas right
+       ============================================================ -->
+  <section class="game-section section-alt" id="section-pixeldrift" aria-labelledby="title-pixeldrift">
+    <div class="game-number" aria-hidden="true">04</div>
+    <div class="container game-layout game-layout-right">
+
+      <div class="game-info-side">
+        <div class="game-badges" aria-label="Game tags">
+          <span class="game-badge badge-genre">DIMENSIONAL BREAKOUT</span>
+          <span class="game-badge badge-diff">DIFFICULTY: DRIFTING</span>
+          <span class="game-badge badge-zares">ZARES™ ORIGINAL</span>
+        </div>
+        <h2 class="game-title glitch" data-text="ZARES™ PIXELDRIFT" id="title-pixeldrift">ZARES™ PIXELDRIFT</h2>
+        <h3 class="game-subtitle text-orange">REALITY BREAKOUT</h3>
+        <p class="game-description">
+          Breakout. But reality is unstable. Every 10 bricks: a rift tears open, the geometry corrupts,
+          and the ball exists in multiple dimensions simultaneously.
+        </p>
+        <p class="game-description">
+          Inspired by the question: <em>"What if Breakout was set in a universe with broken physics constants?"</em>
+        </p>
+        <div class="game-lore">
+          <div class="lore-label">LORE FRAGMENT #004</div>
+          <div class="lore-text">
+            "Zares claimed that classic Breakout was too stable. 'Real reality has glitches,' he said,
+            and coded this at 3AM. Bricks have never been the same."
+          </div>
+        </div>
+        <div class="game-specs" aria-label="Game specifications">
+          <div class="spec">
+            <span class="spec-label">ENGINE</span>
+            <span class="spec-val">ZARES™ RIFT-ENGINE v3.14</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">INPUT</span>
+            <span class="spec-val">MOUSE / TOUCH</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">HIGH SCORE</span>
+            <span class="spec-val" id="hs-pixeldrift" aria-live="polite">--</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-canvas-side">
+        <div class="game-canvas-wrapper plasma-border" role="img" aria-label="Pixeldrift game canvas">
+          <canvas id="canvas-pixeldrift" width="600" height="400" aria-label="Pixeldrift game — press PLAY to start"></canvas>
+        </div>
+        <div class="game-controls" role="group" aria-label="Pixeldrift game controls">
+          <button class="game-btn btn-play" onclick="startPixeldrift()" aria-label="Start Pixeldrift">▶ PLAY</button>
+          <button class="game-btn btn-stop" onclick="stopPixeldrift()" aria-label="Stop Pixeldrift">■ STOP</button>
+        </div>
+        <div class="game-keys">Move mouse / drag to control paddle</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GAME 05 — ZARES™ MEMORYGLITCH: PATTERN CASCADE
+       Layout: canvas left, info right
+       ============================================================ -->
+  <section class="game-section" id="section-memoryglitch" aria-labelledby="title-memoryglitch">
+    <div class="game-number" aria-hidden="true">05</div>
+    <div class="container game-layout game-layout-left">
+
+      <div class="game-canvas-side">
+        <div class="game-canvas-wrapper plasma-border dom-game-wrapper" role="region" aria-label="Memoryglitch game container">
+          <div id="game-memoryglitch" aria-label="Memoryglitch game — press PLAY to start"></div>
+        </div>
+        <div class="game-controls" role="group" aria-label="Memoryglitch game controls">
+          <button class="game-btn btn-play" onclick="startMemoryglitch()" aria-label="Start Memoryglitch">▶ PLAY</button>
+          <button class="game-btn btn-stop" onclick="stopMemoryglitch()" aria-label="Stop Memoryglitch">■ STOP</button>
+        </div>
+        <div class="game-keys">Watch the sequence. Repeat it. Ignore the glitches.</div>
+      </div>
+
+      <div class="game-info-side">
+        <div class="game-badges" aria-label="Game tags">
+          <span class="game-badge badge-genre">MEMORY COMBAT</span>
+          <span class="game-badge badge-diff">DIFFICULTY: CORRUPTED</span>
+          <span class="game-badge badge-zares">ZARES™ ORIGINAL</span>
+        </div>
+        <h2 class="game-title glitch" data-text="ZARES™ MEMORYGLITCH" id="title-memoryglitch">ZARES™ MEMORYGLITCH</h2>
+        <h3 class="game-subtitle text-cyan">PATTERN CASCADE</h3>
+        <p class="game-description">
+          Memorize the pattern. Repeat it. But the system is corrupting your memory —
+          ghost patterns flash to deceive you. Only the real sequence survives.
+        </p>
+        <p class="game-description">
+          Inspired by the question: <em>"What if Simon Says was designed by someone who hated you?"</em>
+        </p>
+        <div class="game-lore">
+          <div class="lore-label">LORE FRAGMENT #005</div>
+          <div class="lore-text">
+            "After watching speedrunners memorize 10-hour routes, Zares wondered what happens when
+            the route itself is sabotaged. This is the answer."
+          </div>
+        </div>
+        <div class="game-specs" aria-label="Game specifications">
+          <div class="spec">
+            <span class="spec-label">ENGINE</span>
+            <span class="spec-val">ZARES™ MEMORY-ENGINE v∞.0</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">INPUT</span>
+            <span class="spec-val">MOUSE / TOUCH</span>
+          </div>
+          <div class="spec">
+            <span class="spec-label">HIGH SCORE</span>
+            <span class="spec-val" id="hs-memoryglitch" aria-live="polite">--</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer id="footer" role="contentinfo">
+    <div class="container footer-inner">
+      <div class="footer-logo glitch" data-text="ZARES">ZARES GAMING</div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="index.html">← BACK TO PORTFOLIO</a>
+        <a href="https://www.youtube.com/@zaresgaming" target="_blank" rel="noopener" aria-label="ZARES Gaming on YouTube (opens in new tab)">YOUTUBE</a>
+        <a href="https://www.twitch.tv/zaresgaming"    target="_blank" rel="noopener" aria-label="ZARES Gaming on Twitch (opens in new tab)">TWITCH</a>
+        <a href="https://www.onlyfans.com/zaresgaming" target="_blank" rel="noopener" aria-label="ZARES Gaming on OnlyFans (opens in new tab)">ONLYFANS</a>
+      </nav>
+      <p class="footer-copy">© 2030 ZARES GAMING™ — ALL REALITIES RESERVED</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <script src="main.js"></script>
+  <script src="games.js"></script>
+  <script>
+    'use strict';
+
+    // ── Active game instance registry ─────────────────────────────────────────
+    /** @type {Record<string, {stop: function, setGravity?: function} | null>} */
+    var activeGames = {};
+
+    // ── VOIDRUNNER ─────────────────────────────────────────────────────────────
+    function startVoidrunner() {
+      if (activeGames.voidrunner) { activeGames.voidrunner.stop(); }
+      activeGames.voidrunner = initVoidrunner('canvas-voidrunner');
+    }
+    function stopVoidrunner() {
+      if (activeGames.voidrunner) {
+        activeGames.voidrunner.stop();
+        activeGames.voidrunner = null;
+      }
+    }
+
+    // ── NEURALSTRIKE ───────────────────────────────────────────────────────────
+    function startNeuralstrike() {
+      if (activeGames.neuralstrike) { activeGames.neuralstrike.stop(); }
+      activeGames.neuralstrike = initNeuralstrike('game-neuralstrike');
+    }
+    function stopNeuralstrike() {
+      if (activeGames.neuralstrike) {
+        activeGames.neuralstrike.stop();
+        activeGames.neuralstrike = null;
+      }
+    }
+
+    // ── GRAVITON BREACH ────────────────────────────────────────────────────────
+    function startGraviton() {
+      if (activeGames.graviton) { activeGames.graviton.stop(); }
+      activeGames.graviton = initGraviton('canvas-graviton');
+    }
+    function stopGraviton() {
+      if (activeGames.graviton) {
+        activeGames.graviton.stop();
+        activeGames.graviton = null;
+      }
+    }
+    function setGravity(dir) {
+      if (activeGames.graviton && typeof activeGames.graviton.setGravity === 'function') {
+        activeGames.graviton.setGravity(dir);
+      }
+    }
+
+    // ── PIXELDRIFT ─────────────────────────────────────────────────────────────
+    function startPixeldrift() {
+      if (activeGames.pixeldrift) { activeGames.pixeldrift.stop(); }
+      activeGames.pixeldrift = initPixeldrift('canvas-pixeldrift');
+    }
+    function stopPixeldrift() {
+      if (activeGames.pixeldrift) {
+        activeGames.pixeldrift.stop();
+        activeGames.pixeldrift = null;
+      }
+    }
+
+    // ── MEMORYGLITCH ───────────────────────────────────────────────────────────
+    function startMemoryglitch() {
+      if (activeGames.memoryglitch) { activeGames.memoryglitch.stop(); }
+      activeGames.memoryglitch = initMemoryglitch('game-memoryglitch');
+    }
+    function stopMemoryglitch() {
+      if (activeGames.memoryglitch) {
+        activeGames.memoryglitch.stop();
+        activeGames.memoryglitch = null;
+      }
+    }
+  </script>
+
+</body>
+</html>
